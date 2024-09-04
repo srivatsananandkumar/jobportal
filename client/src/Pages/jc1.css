@@ -1,0 +1,88 @@
+/* Card Container */
+.card-225 {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1px;
+  background-color: #fff; /* Ensures background color consistency */
+}
+
+/* Left Section */
+.card-left-225 {
+  width: 30%;
+  padding: 16px;
+  background-color: #f7f7f7; /* Background color for left section */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-left-225 img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+/* Center Section */
+.card-center-225 {
+  width: 60%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-detail-225 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.card-loc-225 {
+  font-size: 14px;
+  color: #555;
+  display: flex;
+  align-items: center;
+}
+
+.card-loc-225 .fa-icon {
+  margin-right: 8px; /* Space between icon and text */
+}
+
+.card-sub-225 p {
+  margin: 4px 0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.icon-container-225 {
+  margin-right: 8px; /* Space between icon and text */
+}
+
+/* Right Section */
+.card-right-225 {
+  width: 20%;
+  padding: 16px;
+  background-color: #f7f7f7; /* Background color for right section */
+}
+
+.card-tag-225 h5 {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.card-tag-225 a {
+  color: #007bff; /* Color for the link */
+  text-decoration: none;
+}
+
+.card-tag-225 a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.card-salary-225 p {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 8px 0;
+}

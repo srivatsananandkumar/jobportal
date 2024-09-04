@@ -1,0 +1,166 @@
+/* General Styles */
+ .main-resume3-243{
+    background-color: #e7e8ff;
+ }
+  
+  .header43-resume3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #4B0082; /* Indigo */
+    color: #fff;
+  }
+  
+  .website-name43-resume3 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .signup-button-header43-resume3 {
+    background-color: #fff;
+    color: #4B0082;
+    border: 1px solid #4B0082;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .signup-button-header43-resume3:hover {
+    background-color: #4B0082;
+    color: #fff;
+  }
+  
+  .hole43-resume3 {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  
+  .container43-resume3 {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+  }
+  
+  .form-container43-resume3 {
+    padding: 30px;
+    width: 50%;
+  }
+  
+  .form43-resume3 {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login-text43-resume3 {
+    font-size: 28px;
+    color: #4B0082;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .form43-resume3 label {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .form43-resume3 input {
+    padding: 7px;
+    font-size: 14px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form43-resume3 input:focus {
+    border-color: #4B0082;
+  }
+  
+  .button43-resume3 {
+    padding: 12px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4B0082;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button43-resume3:hover {
+    background-color: #360060;
+  }
+  
+  .login-image43-resume1 {
+    background-color: #f7f7f7;
+    padding: 30px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+  }
+  
+  .login-image43-resume1 h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .login-image43-resume1 p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .login-image43-resume1 ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .login-image43-resume1 ul li {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .login-image43-resume1 h3 {
+    font-size: 20px;
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .container43-resume3 {
+      flex-direction: column;
+    }
+  
+    .form-container43-resume3,
+    .login-image43-resume1 {
+      width: 100%;
+    }
+  
+    .login-text43-resume3 {
+      font-size: 24px;
+    }
+  
+    .login-image43-resume1 h2,
+    .login-image43-resume1 h3 {
+      font-size: 22px;
+    }
+  }
+  

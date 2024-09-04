@@ -1,0 +1,49 @@
+.landing-body-43{
+    background: url("https://wallpapercave.com/wp/wp3592808.jpg") no-repeat fixed;
+    background-size: cover;
+   
+    padding-top: 50px;
+    padding-bottom: 1px;
+    height: 100vh;
+}
+.new-button-loginpage-43{
+    display: flex;
+    gap:40px;
+    margin-left: 30%;
+    margin-top: 5%;
+}
+.new-button-loginpage-43 button{
+    padding: 25px 50px;
+    display: flex;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: #9400f6;
+    color: #fff;
+    border: none;
+    
+   
+}
+.new-button-loginpage-43 button:hover{
+    padding: 25px 50px;
+    display: flex;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: #6a00ff;
+    color: #fff;
+    /* border: 2px solid #ffcc00; 
+    border-radius: 10px; 
+    box-shadow: 0 0 5px #ffcc00, 0 0 10px #ffcc00;  */
+    
+    transform: translateY(-2px);
+    transition: transform 0.4s ease;
+    
+}
+
+
+.landing-content-43{
+    font-family: cursive;
+    font-size: 40px;
+    width:60%;
+    margin-top: 11%;
+    margin-left: 3%;
+}

@@ -1,0 +1,271 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+.modal {
+  background: white;
+  border-radius: 4px;
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.new-container-25 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 10px 15px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-top: 25px;
+  animation: fadeIn-25 0.8s ease-in-out;
+}
+
+@keyframes fadeIn-25 {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.detail-25 {
+  width: 40%;
+  padding: 20px;
+  background: #f9f9f9;
+  border-right: 1px solid #e0e0e0;
+  position: relative;
+  animation: slideInLeft-25 0.8s ease-in-out;
+}
+
+@keyframes slideInLeft-25 {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.detail-header-25 {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.detail-header-25 img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  animation: scaleIn-25 0.8s ease-in-out;
+}
+
+@keyframes scaleIn-25 {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.detail-header-25 h2 {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.detail-header-25 p {
+  color: #666;
+  font-size: 1rem;
+}
+
+.divider-25 {
+  border: 0;
+  border-top: 1px solid #e0e0e0;
+  margin: 20px 0;
+}
+
+.detail-desc-25 {
+  color: #333;
+}
+
+.detail-desc-25 h4 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.detail-desc-25 p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.detail-desc-25 a {
+  color: #00aaff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.detail-desc-25 a:hover {
+  text-decoration: underline;
+  color: #0088cc;
+}
+
+.qualification-25 ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.qualification-25 li {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 10px;
+  animation: fadeIn-25 0.8s ease-in-out;
+}
+
+.qualification-25 li span {
+  font-weight: 600;
+  color: #333;
+}
+
+.detail-btn-25 {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn-apply-25, .btn-save-25 {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-apply-25 {
+  background: #00aaff;
+  color: #fff;
+}
+
+.btn-apply-25:hover {
+  background: #0088cc;
+  transform: scale(1.05);
+}
+
+.btn-save-25 {
+  background: #f6f5f7;
+  color: #333;
+}
+
+.btn-save-25:hover {
+  background: #e0e0e0;
+  transform: scale(1.05);
+}
+
+.content-job-25 {
+  width: 60%;
+  padding: 20px;
+  animation: slideInRight-25 0.8s ease-in-out;
+}
+
+@keyframes slideInRight-25 {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.content-job-25 h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.content-job-25 p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.content-job-25 p span {
+  font-weight: 600;
+  color: #333;
+}
+
+.new-contact-google-25 {
+  font-size: 1.2rem;
+  color: #00aaff;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.new-contact-google-25:hover {
+  color: #0088cc;
+}
+
+.close-detail-25 {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #666;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-detail-25:hover {
+  color: #333;
+}
+
+@media (max-width: 850px) {
+  .new-container-25 {
+    flex-direction: column;
+  }
+
+  .detail-25, .content-job-25 {
+    width: 100%;
+  }
+
+  .detail-25 {
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+}
+
+@media (max-width: 600px) {
+  .detail-header-25 h2 {
+    font-size: 1.2rem;
+  }
+
+  .detail-header-25 p {
+    font-size: 0.9rem;
+  }
+
+  .content-job-25 h1 {
+    font-size: 1.5rem;
+  }
+
+  .content-job-25 p {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,278 @@
+.sin-body {
+    width: 100%;
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: url("https://wallpapercave.com/uwp/uwp4230075.jpeg") no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+  }
+  
+  .sign-in-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .sign-in-container {
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 420px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    animation: scaleUp 0.5s ease-out;
+    margin-left: 65%;
+  }
+  
+  .sign-in-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .sign-in-header h1 {
+    font-size: 2.2rem;
+    color: #1e1d1d;
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+    transition: color 0.3s ease;
+  }
+  
+  .sign-in-header h1:hover {
+    color: #007bff;
+  }
+  
+  .sign-in-header p {
+    color: #000000;
+    font-size: 1.1rem;
+    margin: 0;
+  }
+  
+  .form-group {
+    margin-bottom: 25px;
+    position: relative;
+  }
+  
+  .sin-body label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #090909;
+    transition: color 0.3s ease;
+  }
+  
+  .sin-body label:hover {
+    color: #007bff;
+  }
+  
+  .sin-body input[type="email"],
+  .sin-body input[type="password"] {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    border: 1px solid #d8f6ffd0;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    border-radius: 50px;
+    opacity: 40%;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .sin-body input[type="email"]:focus,
+  .sin-body input[type="password"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.4); 
+  }
+  
+  .error {
+    color: #d9534f;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  .button-container1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .sign-in-button1 {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    width: 180px;
+    color: #fff;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .sign-in-button1::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(29, 28, 28, 0.1), transparent);
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+  }
+  
+  .sign-in-button1:hover::before {
+    opacity: 1;
+  }
+  
+  .sign-in-button1:hover {
+    background: linear-gradient(135deg, #0056b3, #003d7a);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 123, 255, 0.3);
+  }
+  
+  .forgot-password-button {
+    padding: 12px;
+    font-size: 16px;
+    width: 180px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    margin-left: 10px;
+  }
+  
+  .forgot-password-button:hover {
+    background: linear-gradient(135deg, #0056b3, #003d7a);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 123, 255, 0.3);
+  }
+  
+  .password-length {
+    margin-top: 10px;
+  }
+  
+  .password-length p {
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  .password-length .invalid {
+    color: red;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes scaleUp {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .google-signin-button{
+    display:flex;
+    margin-top: 5%;
+    margin-left: 20%;
+  }
+  /* Responsive Styles */
+  @media (max-width: 1200px) {
+    .sign-in-container {
+      margin-left: 20%;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .sign-in-container {
+      margin-left: 10%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .sign-in-container {
+      width: 90%;
+      margin-left: 5%;
+      margin-top: 50px;
+      padding: 20px;
+    }
+  
+    .sign-in-header h1 {
+      font-size: 1.8rem;
+    }
+  
+    .sign-in-header p {
+      font-size: 1rem;
+    }
+  
+    .form-group label {
+      font-size: 14px;
+    }
+  
+    .sin-body input[type="email"],
+    .sin-body input[type="password"] {
+      font-size: 14px;
+      padding: 12px;
+    }
+  
+    .sign-in-button1,
+    .forgot-password-button {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .button-container1 {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .sign-in-container {
+      margin-left: 5%;
+      margin-top: 20px;
+      padding: 15px;
+    }
+  
+    .sign-in-header h1 {
+      font-size: 1.6rem;
+    }
+  
+    .sign-in-header p {
+      font-size: 0.9rem;
+    }
+  
+    .sin-body input[type="email"],
+    .sin-body input[type="password"] {
+      font-size: 12px;
+      padding: 10px;
+    }
+  
+    .sign-in-button1,
+    .forgot-password-button {
+      font-size: 12px;
+      padding: 8px;
+    }
+  }

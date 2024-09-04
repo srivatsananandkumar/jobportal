@@ -1,0 +1,101 @@
+
+.profile-container-profile-view {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .profile-card-profile-view {
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 70%;
+  }
+  
+  .photo-section-profile-view {
+    margin-right: 20px;
+  }
+  
+  .progress-circle-profile-view {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: conic-gradient(red 48%, lightgray 0%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .photo-button-profile-view {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 10px;
+  }
+  
+  .progress-percentage-profile-view {
+    position: absolute;
+    bottom: -20px;
+    font-weight: bold;
+  }
+  
+  .profile-info-profile-view h2 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .edit-icon-profile-view {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  .details-profile-view {
+    margin-top: 10px;
+  }
+  
+  .details-profile-view .detail-item-profile-view {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+  }
+  
+  .details-section-profile-view {
+    background-color: #fff0e6;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 25%;
+  }
+  
+  .details-section-profile-view ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .details-section-profile-view li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .increase-profile-view {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .add-details-button-profile-view {
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
