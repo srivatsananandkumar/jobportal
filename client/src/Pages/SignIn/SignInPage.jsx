@@ -78,6 +78,7 @@ const SignInPage = () => {
             >
               Sign in with Google
             </button>
+            <NavLink to="/forgot-password">Forget Password</NavLink>
           </form>
         </div>
       </div>

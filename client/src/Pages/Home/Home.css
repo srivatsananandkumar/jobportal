@@ -11,12 +11,19 @@
     background-color: white;
   }
   
-  .logo {
+  .logo-home-243 {
     font-size: 24px;
     font-weight: bold;
+    color:black;
+   
+  }
+
+  .logo-home-243 a{
+    text-decoration: none;
+    color:black;
   }
   
-  .logo span {
+  .logo-home-243 span {
     color: red;
   }
   
@@ -33,10 +40,48 @@
     color: black;
   }
   
-  .profile img {
+  .profile-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .profile-image {
+    cursor: pointer;
     width: 40px;
     height: 40px;
     border-radius: 50%;
+  }
+  
+  .profile-dropdown-menu {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    border-radius: 8px;
+  }
+  
+  .profile-dropdown-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    display: block;
+    white-space: nowrap;
+  }
+  
+  .profile-dropdown-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .profile-link1{
+    text-decoration: none;
+    color:black;
+  }
+
+  .profile-button1{
+    background-color: white;
+    border:none;
+    width:100%;
   }
   
   .hero {
@@ -218,7 +263,7 @@
       color:#fff;
       cursor: pointer;
     }
-    .logo{
+    .logo-home-243{
       font-size: 16px;
       margin-left: 0%;
      }
@@ -227,7 +272,7 @@
      main{
       width:130%;
      }
-     .logo{
+     .logo-home-243{
       font-size: 16px;
       margin-left: -5%;
      }
@@ -251,7 +296,7 @@
       color:#fff;
       cursor: pointer;
     }
-    .logo{
+    .logo-home-243{
       font-size: 16px;
       margin-left: -5%;
      }

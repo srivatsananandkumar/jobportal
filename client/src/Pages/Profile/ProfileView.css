@@ -1,101 +1,261 @@
+/* General Page Styles */
+.main-profile-view-body{
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+}
 
+/* Container */
 .profile-container-profile-view {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    background-color: #f9f9f9;
-  }
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 15px;
+  /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); */
+  transition: all 0.3s ease;
   
-  .profile-card-profile-view {
-    display: flex;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 70%;
-  }
-  
-  .photo-section-profile-view {
-    margin-right: 20px;
-  }
-  
-  .progress-circle-profile-view {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    background: conic-gradient(red 48%, lightgray 0%);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
+}
+
+/* .profile-container-profile-view:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+} */
+
+/* Header Section */
+.header-profile-view {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.profile-img-container-profile-view {
+  margin-right: 20px;
+}
+
+.profile-img-profile-view {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #007bff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info-profile-view {
+  flex: 1;
+}
+
+.profile-name-profile-view {
+  font-size: 32px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.profile-title-profile-view {
+  font-size: 20px;
+  color: #777;
+  margin-bottom: 5px;
+}
+
+.profile-location-profile-view {
+  font-size: 16px;
+  color: #aaa;
+  margin-bottom: 15px;
+}
+
+.social-links-profile-view a {
+  text-decoration: none;
+  color: #007bff;
+  margin-right: 15px;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.social-links-profile-view a:hover {
+  color: #0056b3;
+}
+
+/* Action Buttons */
+.profile-actions-profile-view {
+  margin-top: 20px;
+}
+
+.btn-profile-view {
+  padding: 12px 25px;
+  margin-right: 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-profile-view:hover {
+  background-color: #0056b3;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* About Section */
+.about-profile-view {
+  margin-top: 30px;
+}
+
+.about-title-profile-view {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.about-content-profile-view {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.8;
+}
+
+/* Skills Section */
+.skills-profile-view {
+  margin-top: 30px;
+}
+
+
+
+.skills-profile-view span {
+  display: inline-block;
+  background-color: #e0e0e0;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+  transition: background-color 0.3s ease;
+}
+
+.skills-profile-view span:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Experience Section */
+.experience-profile-view {
+  margin-top: 30px;
+}
+
+.experience-title-profile-view {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.experience-item-profile-view {
+  margin-bottom: 25px;
+}
+
+.experience-company-profile-view {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.experience-role-profile-view {
+  font-size: 16px;
+  color: #555;
+}
+
+.experience-duration-profile-view {
+  font-size: 14px;
+  color: #999;
+}
+
+/* Education Section */
+.education-profile-view {
+  margin-top: 30px;
+}
+
+.education-title-profile-view {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.education-item-profile-view {
+  margin-bottom: 20px;
+}
+
+.education-degree-profile-view {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.education-institute-profile-view {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Projects Section */
+.projects-profile-view {
+  margin-top: 30px;
+}
+
+.projects-title-profile-view {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.project-item-profile-view a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.project-item-profile-view a:hover {
+  color: #0056b3;
+}
+
+/* Certifications Section */
+.certifications-profile-view {
+  margin-top: 30px;
+}
+
+.certifications-title-profile-view {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .header-profile-view {
+    flex-direction: column;
     align-items: center;
   }
-  
-  .photo-button-profile-view {
-    position: absolute;
-    background-color: #fff;
-    border-radius: 50%;
-    padding: 10px;
+
+  .profile-img-container-profile-view {
+    margin-bottom: 20px;
   }
-  
-  .progress-percentage-profile-view {
-    position: absolute;
-    bottom: -20px;
-    font-weight: bold;
+
+  .profile-info-profile-view {
+    text-align: center;
   }
-  
-  .profile-info-profile-view h2 {
-    margin: 0;
-    display: flex;
-    align-items: center;
+
+  .btn-profile-view {
+    width: 100%;
+    margin-bottom: 10px;
   }
-  
-  .edit-icon-profile-view {
-    margin-left: 10px;
-    cursor: pointer;
-  }
-  
-  .details-profile-view {
-    margin-top: 10px;
-  }
-  
-  .details-profile-view .detail-item-profile-view {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 0;
-  }
-  
-  .details-section-profile-view {
-    background-color: #fff0e6;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 25%;
-  }
-  
-  .details-section-profile-view ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .details-section-profile-view li {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-  }
-  
-  .increase-profile-view {
-    color: green;
-    font-weight: bold;
-  }
-  
-  .add-details-button-profile-view {
-    background-color: #ff6b6b;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
+}

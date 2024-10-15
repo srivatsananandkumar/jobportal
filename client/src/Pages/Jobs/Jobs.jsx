@@ -61,7 +61,8 @@ const Jobs = () => {
     <div>
       <div className="body-43">
         <div className="sidebar-43">
-          <h1 className="logo-43">JobHunt</h1>
+          <NavLink to="/services">
+          <h1 className="logo-jobs-43">Job<span>Hunt</span></h1></NavLink>
           <div className="menus-43">
             <NavLink to="/home"><FontAwesomeIcon icon={faHouse} className="fa-icon-43" />Home</NavLink>
             <NavLink to="/dashboard"><FontAwesomeIcon icon={faNewspaper} className="fa-icon-43" />Dashboard</NavLink>

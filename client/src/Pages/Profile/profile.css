@@ -1,6 +1,7 @@
 .container-36 {
-    background-color: #e7e8ff;
+    /* background-color: #e7e8ff; */
     min-height:100vh;
+    width:100%;
     
 }
 .h3-36{
@@ -40,7 +41,7 @@
 }
 
 .list-group-item-36{
-    background-color: #E6E6FA;
+    /* background-color: #E6E6FA; */
     padding: 10px;
     border: 1.5px solid #dbdada;
     /* border-radius: 20px; */
@@ -89,6 +90,7 @@
 
 .row-36{
     display:flex;
+    
 }
 
 .row1-36{
@@ -115,10 +117,14 @@
      background-color: #007bff;
      border: 1px solid #007bff;
      padding: 10px;
+     cursor: pointer;
 }
 
 .img1-responsive-36{
-    border-radius: 50%;;
+    border-radius: 50%;
+    width:100px;
+    height:100px;
+    padding-bottom:7px;
 }
 .card-header2-36{
     border-bottom: 2px solid #dbdada;
@@ -312,9 +318,51 @@
   }
 
   .card12644-header-36{
-    border-bottom: 2px solid #dbdada;
-    
+    border-bottom: 2px solid #dbdada; 
     background-color: #9400f6;
     color:#fff;
     font-size: 20px;
   }
+  .header-profile-243 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+  }
+  
+  .logo-profile-243 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .logo-profile-243 span {
+    color: red;
+  }
+  
+  .header-profile-243 nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .heading-profile-243-main{
+    color: black;
+    font-size:24px;
+  }
+
+  .gotoprofile-profile-243{
+    padding:10px;
+    background-color: #6e2dcf;
+    color:#fff;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+
+  .gotoprofile-profile-243:hover{
+    background-color: #7029da;
+  }
+
+  /* @media  screen and (max-width:576px) */

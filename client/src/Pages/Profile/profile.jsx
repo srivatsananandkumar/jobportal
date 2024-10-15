@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "font-awesome/css/font-awesome.min.css";
 import './profile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import axios from "axios";
 
 const Profile = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +17,7 @@ const Profile = () => {
     city: "",
     state: "",
     zip: "",
-    profileImage: "https://bootdey.com/img/Content/avatar/avatar1.png",
+    // profileImage: "https://bootdey.com/img/Content/avatar/avatar1.png",
     resume: null,
     currentPassword: "",
     newPassword: "",
@@ -27,6 +28,9 @@ const Profile = () => {
       showPhone: false,
     },
   });
+
+  const [file, setFile] = useState();
+  const [image, setImage] = useState();
 
   const [activeTab, setActiveTab] = useState("account");
 
@@ -51,19 +55,26 @@ const Profile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("Settings updated successfully!");
-    console.log(formData);
+    // console.log(formData);
   };
 
   const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setFormData({ ...formData, profileImage: reader.result });
-      };
-      reader.readAsDataURL(file);
-    }
+    const formsData = new FormData()
+    formsData.append('file', file)
+    axios.post('http://localhost:3000/imageupload', formsData)
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
   };
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/getimage')
+    .then(res => {
+      setImage(res.data[res.data.length - 1].image); 
+      console.log("Fetched data" ,res.data[0].image);
+    })
+    .catch(err => console.log(err))
+   
+  }, [])
 
   const handleResumeUpload = (e) => {
     const file = e.target.files[0];
@@ -91,9 +102,22 @@ const Profile = () => {
     // Logic to redirect to resume creation page can be added here
   };
 
+  useEffect(() => {
+    console.log('Image state:', image);
+    console.log('Constructed Image URL:', `http://localhost:3000/profileimages/${image}`);
+  }, [image]);
+
   return (
     <div className="container-36">
-      <h1 className="h3-36 ">Settings</h1>
+      <header className="header-profile-243">
+        <div className="logo-profile-243">Job<span>Hunt</span></div>
+        <div className="heading-profile-243-main">Settigns</div>
+        <nav>
+          <ul>
+            
+            <li className="gotoprofile-profile-243">Go to profile</li>
+          </ul>
+        </nav></header>
       <div className="row-36">
         <div className="col-md-5-36">
           <div className="card1-36">
@@ -169,25 +193,30 @@ const Profile = () => {
                         </div>
                         <div className="col-md-4-36">
                           <div className="text-center1-36">
-                            <img
+                            {/* <img
                               alt="Profile"
                               src={formData.profileImage}
                               className="img1-responsive-36"
                               width="128"
                               height="128"
-                            />
+                            /> */}
+                            <img src={`http://localhost:3000/profileimages/${image}`} className="img1-responsive-36" alt="profile" />
                             <div className="mt-2-36">
                               <input
                                 type="file"
                                 accept="image/*"
                                 className="btn1-36 btn-primary-36"
                                 
-                                onChange={handleImageUpload}
+                                onChange={e => setFile(e.target.files[0])}
                               />
                             </div>
+                            <button onClick={handleImageUpload}>Upload</button>
                             <small>
                               For best results, use an image at least 128px by 128px in .jpg format
                             </small>
+                            
+        
+      
                           </div>
                         </div>
                       </div>

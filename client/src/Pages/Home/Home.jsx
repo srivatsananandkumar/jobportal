@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './Home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -19,6 +19,7 @@ function App() {
  const [auth, setAuth] = useState(false);
  const [messages, setMessages] = useState('');
  const [name, setName] = useState('');
+ const [dropdownVisible, setDropdownVisible] = useState(false); 
 
  axios.defaults.withCredentials = true;
  useEffect(() => {
@@ -43,6 +44,26 @@ function App() {
   fetchData();
 }, []);
 
+const toggleDropdown = () => {
+  setDropdownVisible(!dropdownVisible);
+};
+
+const dropdownRef = useRef(null);
+
+useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setDropdownVisible(false);
+    }
+  };
+  document.addEventListener('mousedown', handleClickOutside);
+
+  return () => {
+    document.removeEventListener('mousedown', handleClickOutside);
+  };
+}, []);
+
+
 const handleLogout =  () => {
   axios.get("http://localhost:3000/api/logout")
   .then(res => {
@@ -53,7 +74,8 @@ const handleLogout =  () => {
   return (
     <div className="App">
       <header className="header">
-        <div className="logo">Job<span>Hunt</span></div>
+        <NavLink to="/services">
+        <div className="logo-home-243">Job<span>Hunt</span></div></NavLink>
         <nav>
           <ul>
             <li><NavLink to="/jobs">Jobs</NavLink></li>
@@ -63,12 +85,20 @@ const handleLogout =  () => {
           </ul>
         </nav>
         {auth ? (
-          <NavLink to="/profile">
-          <div className="profile">
-            <img src={myimage} alt="Profile" />
-            <button onClick={handleLogout}>Logout</button>
+          <div className="profile-container" ref={dropdownRef}>
+            <img
+              src={myimage}
+              alt="Profile"
+              className="profile-image"
+              onClick={toggleDropdown}
+            />
+            {dropdownVisible && (
+              <div className="profile-dropdown-menu">
+                <NavLink to="/profile" className="profile-dropdown-item profile-link1">View Profile</NavLink>
+                <button className="profile-dropdown-item profile-button1" onClick={handleLogout}>Logout</button>
+              </div>
+            )}
           </div>
-        </NavLink>
         ) : (
           
           <div className="auth-buttons">

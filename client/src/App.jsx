@@ -45,8 +45,14 @@ import Template1 from './Pages/Resume/Template1'
 import Template2 from './Pages/Resume/Template2'
 import TemplateRenderer from './Pages/Resume/ResumeParent'
 import ProfileView from './Pages/Profile/ProfileView'
+import ProfileForm from './Pages/Profile/ProfileForm'
 
+import ForgotPassword from './Pages/ForgotPassword/ForgotPassword'
 
+import ResetPassword from './Pages/ForgotPassword/ResetPassword'
+import Services from './Pages/Services/Services'
+import Chatbot from './Pages/Chatbot/Chatbot'
+import ChatMessage from './Pages/Chatbot/ChatMessage'
 function App() {
   
 
@@ -58,8 +64,9 @@ function App() {
      <Route path="/dashboard" element={<Dashboard />} /> 
      <Route path="/jobs" element={<Jobs />} />
      <Route path="/jobcard1" element={<Jobcard1/>} />
-     <Route path="/profile" element={<Profile/>} /> 
+     <Route path="/profileedit" element={<Profile/>} /> 
      <Route path="/setting" element={<Settings/>} />
+
      <Route path="/jobcard2" element={<Jobcard2/>} />
      <Route path="/jobcard3" element={<Jobcard3/>} />
      <Route path="/jobcard4" element={<Jobcard4/>} />
@@ -67,9 +74,11 @@ function App() {
      <Route path="/jobcard6" element={<Jobcard6/>} />
      <Route path="/jobcard7" element={<Jobcard7/>} />
      <Route path="/jobcard8" element={<Jobcard8/>} />
+
      <Route path="/login" element={<SignInPage/>} />
      <Route path="/signup" element={<Signup/>} />
      <Route path="/" element={<Landing/>} />
+
      <Route path="/Intern" element={<Internships/>} />
      <Route path="/icard1" element={<Icard1/>} />
      <Route path="/icard2" element={<Icard2/>} />
@@ -77,22 +86,33 @@ function App() {
      <Route path="/icard4" element={<Icard4/>} />
      <Route path="/icard5" element={<Icard5/>} />
      <Route path="/icard6" element={<Icard6/>} />
-     <Route path="/profileview" element={<ProfileView/>} />
+
+     <Route path="/profile" element={<ProfileView/>} />
      {/* <Route path="/resume" element={<Resume/>} /> */}
      <Route path="/sj" element={<SavedJobs/>} />
      <Route path="/resume" element={<Template />} />
 
-     <Route path="resume1" element={<Resume1 />} />
-     <Route path="resume2" element={<Resume2 />} />
-     <Route path="resume3" element={<Resume3 />} />
-     <Route path="resume4" element={<Resume4 />} />
-     <Route path="resume5" element={<Resume5 />} />
-     <Route path="template1" element={<Template1 />} />
-     <Route path="template2" element={<Template2 />} />
+     <Route path="/resume1" element={<Resume1 />} />
+     <Route path="/resume2" element={<Resume2 />} />
+     <Route path="/resume3" element={<Resume3 />} />
+     <Route path="/resume4" element={<Resume4 />} />
+     <Route path="/resume5" element={<Resume5 />} />
+
+     <Route path="/template1" element={<Template1 />} />
+     <Route path="/template2" element={<Template2 />} />
      <Route path="/template/:templateId" element={<TemplateRenderer />} />
 
+     <Route path="/profileform" element={<ProfileForm />} />
 
+     <Route path="/forgot-password" element={<ForgotPassword />} />
+     <Route path="/reset-password/:id/:token2" element={<ResetPassword />} />
+
+     <Route path="/services" element={<Services />} />
+     <Route path="/chat" element={<Chatbot />} />
+     <Route path="/chatmesg" element={<ChatMessage />} />
     </Routes>
+
+    
 
    
     
