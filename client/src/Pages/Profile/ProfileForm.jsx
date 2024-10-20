@@ -10,9 +10,9 @@ const ProfileForm = () => {
     address: '',
     linkedin: '',
     github: '',
-    education: '',
-    experience: '',
-    projects: '',
+    education: [''],
+    experience: [''],
+    projects: [''],
     skills: ['']
   });
 
@@ -34,6 +34,51 @@ const ProfileForm = () => {
   const removeSkill = (index) => {
     const newSkills = formData.skills.filter((_, i) => i !== index);
     setFormData({ ...formData, skills: newSkills });
+  };
+
+  const handleEducationChange = (index, e) => {
+    const newEducation = [...formData.education];
+    newEducation[index] = e.target.value;
+    setFormData({ ...formData, education: newEducation });
+  };
+
+  const addEducation = () => {
+    setFormData({ ...formData, education: [...formData.education, ''] });
+  };
+
+  const removeEducation = (index) => {
+    const newEducation = formData.education.filter((_, i) => i !== index);
+    setFormData({ ...formData, education: newEducation });
+  };
+
+  const handleExperienceChange = (index, e) => {
+    const newExperience = [...formData.experience];
+    newExperience[index] = e.target.value;
+    setFormData({ ...formData, experience: newExperience });
+  };
+
+  const addExperience = () => {
+    setFormData({ ...formData, experience: [...formData.experience, ''] });
+  };
+
+  const removeExperience = (index) => {
+    const newExperience = formData.experience.filter((_, i) => i !== index);
+    setFormData({ ...formData, experience: newExperience });
+  };
+
+  const handleProjectChange = (index, e) => {
+    const newProjects = [...formData.projects];
+    newProjects[index] = e.target.value;
+    setFormData({ ...formData, projects: newProjects });
+  };
+
+  const addProject = () => {
+    setFormData({ ...formData, projects: [...formData.projects, ''] });
+  };
+
+  const removeProject = (index) => {
+    const newProjects = formData.projects.filter((_, i) => i !== index);
+    setFormData({ ...formData, projects: newProjects });
   };
 
   const handleSubmit = async (e) => {
@@ -161,6 +206,78 @@ const ProfileForm = () => {
 
         <div className="form-group">
           <label>Education:</label>
+          {formData.education.map((edu, index) => (
+            <div key={index} className="skill-input-group">
+              <input
+                type="text"
+                value={edu}
+                onChange={(e) => handleEducationChange(index, e)}
+                placeholder={`Education ${index + 1}`}
+              />
+              <button
+                type="button"
+                onClick={() => removeEducation(index)}
+                className="remove-skill-btn"
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+          <button type="button" onClick={addEducation} className="add-skill-btn">
+            Add Education
+          </button>
+        </div>
+
+        <div className="form-group">
+          <label>Experience:</label>
+          {formData.experience.map((exp, index) => (
+            <div key={index} className="skill-input-group">
+              <input
+                type="text"
+                value={exp}
+                onChange={(e) => handleExperienceChange(index, e)}
+                placeholder={`Experience ${index + 1}`}
+              />
+              <button
+                type="button"
+                onClick={() => removeExperience(index)}
+                className="remove-skill-btn"
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+          <button type="button" onClick={addExperience} className="add-skill-btn">
+            Add Experience
+          </button>
+        </div>
+
+        <div className="form-group">
+          <label>Projects:</label>
+          {formData.projects.map((project, index) => (
+            <div key={index} className="skill-input-group">
+              <input
+                type="text"
+                value={project}
+                onChange={(e) => handleProjectChange(index, e)}
+                placeholder={`Project ${index + 1}`}
+              />
+              <button
+                type="button"
+                onClick={() => removeProject(index)}
+                className="remove-skill-btn"
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+          <button type="button" onClick={addProject} className="add-skill-btn">
+            Add Project
+          </button>
+        </div>
+
+        {/* <div className="form-group">
+          <label>Education:</label>
           <textarea
             name="education"
             value={formData.education}
@@ -190,7 +307,7 @@ const ProfileForm = () => {
             rows="3"
             placeholder="e.g., Portfolio Website, E-commerce App"
           />
-        </div>
+        </div> */}
 
         <button type="submit" className="submit-btn">Submit</button>
       </form>

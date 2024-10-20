@@ -41,7 +41,7 @@ const ProfileView = () => {
           <div className="profile-actions-profile-view">
            <NavLink to= "/profileedit"> <button className="btn-profile-view">Edit Profile</button></NavLink>
             <button className="btn-profile-view">Download Resume</button>
-            <button className="btn-profile-view">Message</button>
+            <NavLink to= "/chat"> <button className="btn-profile-view">Message</button></NavLink>
           </div>
         </div>
       </div>

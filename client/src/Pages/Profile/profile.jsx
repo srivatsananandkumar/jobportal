@@ -4,6 +4,7 @@ import './profile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 const Profile = () => {
   const [formData, setFormData] = useState({
@@ -111,11 +112,11 @@ const Profile = () => {
     <div className="container-36">
       <header className="header-profile-243">
         <div className="logo-profile-243">Job<span>Hunt</span></div>
-        <div className="heading-profile-243-main">Settigns</div>
+        <div className="heading-profile-243-main">Settings</div>
         <nav>
           <ul>
             
-            <li className="gotoprofile-profile-243">Go to profile</li>
+          <NavLink to="/profile"> <li className="gotoprofile-profile-243">Go to profile</li></NavLink> 
           </ul>
         </nav></header>
       <div className="row-36">

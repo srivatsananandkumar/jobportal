@@ -9,9 +9,9 @@ const schema = new mongoose.Schema({
     linkedin : String,
     github : String,
     skills: [String],
-    education: String,
-    experience: String,
-    projects: String
+    education: [String],
+    experience: [String],
+    projects: [String]
 
 
 })
