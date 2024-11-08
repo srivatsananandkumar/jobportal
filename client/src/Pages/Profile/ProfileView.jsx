@@ -3,9 +3,31 @@ import './ProfileView.css';
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 
-const ProfileView = () => {
+const ProfileView = ({userId}) => {
+
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    address: '',
+    linkedin: '',
+    github: '',
+    education: [''],
+    experience: [''],
+    projects: [''],
+    skills: ['']
+  });
 
   const [image, setImage] = useState();
+
+  const handleImageUpload = (e) => {
+    const formsData = new FormData()
+    formsData.append('file', file)
+    axios.post('http://localhost:3000/imageupload', formsData)
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  };
 
   useEffect(() => {
     axios.get('http://localhost:3000/getimage')
@@ -16,11 +38,6 @@ const ProfileView = () => {
     .catch(err => console.log(err))
    
   }, [])
-
-  useEffect(() => {
-    console.log('Image state:', image);
-    console.log('Constructed Image URL:', `http://localhost:3000/profileimages/${image}`);
-  }, [image]);
   return (
     <div className="main-profile-view-body">
     <div className="profile-container-profile-view">

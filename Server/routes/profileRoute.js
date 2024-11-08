@@ -14,7 +14,14 @@ ProfileDataRoute.post('/profileData', async (req, res) => {
     }
 });
 
-ProfileDataRoute.get('/profileData/:id', async (req, res) => {
+function isAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next(); // User is authenticated, proceed to the route
+    }
+    res.status(401).json({ message: "Unauthorized access. Please log in first." }); // User is not authenticated
+  }
+
+ProfileDataRoute.get('/profileData/:id',isAuthenticated, async (req, res) => {
     try {
         const profile = await profileData.findById(req.params.id);
         if (!profile) {

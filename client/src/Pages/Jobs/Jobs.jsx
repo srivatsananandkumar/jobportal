@@ -67,8 +67,8 @@ const Jobs = () => {
             <NavLink to="/home"><FontAwesomeIcon icon={faHouse} className="fa-icon-43" />Home</NavLink>
             <NavLink to="/dashboard"><FontAwesomeIcon icon={faNewspaper} className="fa-icon-43" />Dashboard</NavLink>
             <NavLink to="/intern"><FontAwesomeIcon icon={faChartLine} className="fa-icon-43" />Internship</NavLink>
-            <NavLink to="#"><FontAwesomeIcon icon={faBookmark} className="fa-icon-43" />Saved Jobs</NavLink>
-            <NavLink to="#"><FontAwesomeIcon icon={faNewspaper} className="fa-icon-43" />Resume</NavLink>
+            <NavLink to="/sj"><FontAwesomeIcon icon={faBookmark} className="fa-icon-43" />Saved Jobs</NavLink>
+            <NavLink to="/Resume"><FontAwesomeIcon icon={faNewspaper} className="fa-icon-43" />Resume</NavLink>
             {/* <NavLink to="/setting"><FontAwesomeIcon icon={faCog} className="fa-icon-43" />Setting</NavLink> */}
             <NavLink to="/" className="logout-jobs-43"><FontAwesomeIcon icon={faSignOutAlt} className="fa-icon-43"/><span className="text"> Logout</span></NavLink>
           </div>

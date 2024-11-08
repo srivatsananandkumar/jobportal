@@ -193,12 +193,30 @@
     }
   }
   
-  .google-signin-button{
-    display:flex;
+  .google-signin-button {
+    display: flex;
+    justify-content: center;  
+    align-items: center;      
     margin-top: 5%;
     margin-left: 20%;
+    padding: 12px;          
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
-  /* Responsive Styles */
+  
+  
+  .forgot-password-login-243{
+      margin-left:30%;
+      margin-top:7%;
+  }
+
+
   @media (max-width: 1200px) {
     .sign-in-container {
       margin-left: 20%;
@@ -274,5 +292,14 @@
     .forgot-password-button {
       font-size: 12px;
       padding: 8px;
+    }
+    .forgot-password-button{
+        margin-left: 1%;
+    }
+    .forgot-password-login-243{
+      margin-left: 37%;
+    }
+    .google-signin-button{
+      margin-left:27%;
     }
   }

@@ -14,6 +14,7 @@ import dotenv from 'dotenv';
 import path from "path";
 import {profile} from "./models/profileImage.js";
 
+
 dotenv.config();
 
 
@@ -42,7 +43,8 @@ app.use(express.json());
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: { maxAge: 24 * 60 * 60 * 1000 }
   }));
   app.use(passport.initialize());
   app.use(passport.session());
@@ -71,16 +73,23 @@ app.use("/date", loginRoute);
 app.use("/prof",ProfileDataRoute);
 
 app.get('/auth/google',
-    passport.authenticate('google', { scope: ['profile', 'email'] })
-  );
-  
-  app.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/' }),
-    (req, res) => {
-      // Successful authentication, redirect home.
-      res.redirect('http://localhost:5173/home');
-    }
-  );
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/' }),
+  (req, res) => {
+    // Successful authentication, redirect home.
+    res.redirect('http://localhost:5173/home');
+  }
+);
+
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/'); // Redirect to login if not authenticated
+}
  const imagestorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'publics/profileimages')
@@ -95,7 +104,69 @@ app.get('/auth/google',
   storage: imagestorage
  })
 
-  app.post('/imageupload',profileupload.single('file'), (req, res) => {
+//  const validateObjectId = (req, res, next) => {
+//   const { id } = req.params; // Assuming you're passing _id as a URL parameter
+//   if (!mongoose.Types.ObjectId.isValid(id)) {
+//       return res.status(400).json({ error: 'Invalid ID format' });
+//   }
+//   next();
+// };
+
+// app.post('/imageupload',profileupload.single('file'), (req, res) => {
+//   profile.create({image: req.file.filename})
+//   .then(result => res.json(result))
+//   .catch(err => console.log(err))
+
+// })
+
+// app.post('/imageupload', profileupload.single('file'), (req, res) => {
+//   const userId = req.user._id; // Get the authenticated user's ID
+
+//   ProfileImage.create({
+//       user: userId, // Associate the image with the user ID
+//       image: req.file.filename, // Store the uploaded image filename
+//   })
+//   .then(result => res.json(result))
+//   .catch(err => {
+//       console.log(err);
+//       res.status(500).json({ error: 'Error uploading image' });
+//   });
+// });
+
+
+//   // GET route to fetch a profile by ID
+// // app.get('/getImage/:id', validateObjectId, async (req, res) => {
+// //   try {
+// //     const userId = req.params.id;
+// //     const profileData = await profile.findById(userId);
+    
+// //     if (!profileData) {
+// //       return res.status(404).json({ message: "Profile not found" });
+// //     }
+// //     res.json(profileData); // Return the profile data for the specific user
+// //   } catch (error) {
+// //     console.error("Error fetching profile:", error);
+// //     res.status(500).json({ message: "Error fetching profile", error: error.message });
+// //   }
+// // });
+
+// app.get('/getImage/:id', validateObjectId, async (req, res) => {
+//   try {
+//       const userId = req.params.id;
+//       const profileData = await ProfileImage.findOne({ user: userId }); // Find by user ID
+      
+//       if (!profileData) {
+//           return res.status(404).json({ message: "Profile not found" });
+//       }
+//       res.json(profileData); // Return the profile image data
+//   } catch (error) {
+//       console.error("Error fetching profile:", error);
+//       res.status(500).json({ message: "Error fetching profile", error: error.message });
+//   }
+// });
+
+
+ app.post('/imageupload',profileupload.single('file'), (req, res) => {
       profile.create({image: req.file.filename})
       .then(result => res.json(result))
       .catch(err => console.log(err))
@@ -107,6 +178,21 @@ app.get('/auth/google',
     .then(profile => res.json(profile))
     .catch(err => res.json(err))
   })
- 
+
+// app.post('/imageupload',validateObjectId, profileupload.single('file'), (req, res) => {
+//   console.log('File:', req.file); // Log file information
+//     console.log('Body:', req.body); // Log body data
+//   const userId = req.body.user; // Get userId from frontend
+//   profile.create({ user: userId, image: req.file.filename })
+//       .then(result => res.json(result))
+//       .catch(err => res.status(500).json(err));
+// });
+
+// // Get images by user ID
+// app.get('/getImage/:userId',validateObjectId, (req, res) => {
+//   profile.find({ user: req.params.userId })
+//       .then(profile => res.json(profile))
+//       .catch(err => res.status(500).json(err));
+// });
  
 app.listen(3000);
