@@ -41,7 +41,7 @@ route.post("/logindetail", async (req, res) => {
         res.json({
             Status: "Success",
             message: "Login successful",
-            user: userWithoutPassword
+            user:{ ...userWithoutPassword, id: data._id}
         });
     } catch (error) {
         res.status(500).json({ Status: "Error", message: error.message });
@@ -67,29 +67,45 @@ try {
 }
 });
 
-const verifyUser = (req, res, next) => {
-    const token = req.cookies.token;
-    if(!token){
-        return res.status(400).json({ Status: "Error", message: "You are not authenticated" });
-    }
-    else{
-        jwt.verify(token, "jwt-secret-key", (err,decoded) => {
-            if(err){
-                return res.status(400).json({ Status: "Error", message: "Token is not okay" });
-            }
-            else{
-                req.userId = decoded.id;
-                req.name = decoded.name;
-                next();
-            }
-        })
-    }
-}
+// const verifyUser = (req, res, next) => {
+//     const token = req.cookies.token;
+//     if(!token){
+//         return res.status(400).json({ Status: "Error", message: "You are not authenticated" });
+//     }
+//     else{
+//         jwt.verify(token, "jwt-secret-key", (err,decoded) => {
+//             if(err){
+//                 return res.status(400).json({ Status: "Error", message: "Token is not okay" });
+//             }
+//             else{
+//                 req.userId = decoded.id;
+//                 req.name = decoded.name;
+//                 next();
+//             }
+//         })
+//     }
+// }
+
+export const verifyUser = async (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) return res.status(401).json({ message: "Not authenticated" });
+
+  try {
+      const decoded = jwt.verify(token, "jwt-secret-key");
+      const foundUser = await user.findById(decoded.id);
+      if (!foundUser) return res.status(404).json({ message: "User not found" });
+
+      req.user = foundUser;
+      next();
+  } catch (err) {
+      res.status(403).json({ message: "Invalid token" });
+  }
+};
 
 route.get("/auth",verifyUser, async (req,res) =>{
    return   res.json({
     Status: "Success",
-    name : req.name
+    user : req.user
 });
 })
 
