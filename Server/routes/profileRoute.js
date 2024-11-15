@@ -21,9 +21,14 @@ function isAuthenticated(req, res, next) {
     res.status(401).json({ message: "Unauthorized access. Please log in first." }); // User is not authenticated
   }
 
-ProfileDataRoute.get('/profileData/:id',isAuthenticated, async (req, res) => {
+ProfileDataRoute.get('/profileData', async (req, res) => {
     try {
-        const profile = await profileData.findById(req.params.id);
+
+        const userId = req.user._id;
+         const profile = await profileData.findOne({userId})
+         
+        //  (req.params.userId);
+        // console.log(req.params.userId);
         if (!profile) {
             return res.status(404).json({ message: "Profile not found" });
         }
