@@ -149,7 +149,7 @@ function isAuthenticated(req, res, next) {
 // //     res.status(500).json({ message: "Error fetching profile", error: error.message });
 // //   }
 // // });
-
+ 
 // app.get('/getImage/:id', validateObjectId, async (req, res) => {
 //   try {
 //       const userId = req.params.id;
