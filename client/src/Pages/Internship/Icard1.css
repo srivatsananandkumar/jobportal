@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+/* General Modal and Overlay Styles */
 .modal {
   background: white;
   border-radius: 4px;
@@ -15,78 +17,38 @@
   right: 0;
   bottom: 0;
 }
+
+/* Main Container */
 .new-container-25 {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 70%;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 10px 15px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  margin-top: 25px;
-  animation: fadeIn-25 0.8s ease-in-out;
+  margin-top: 5%;
+  margin-left: 15%;
 }
 
-@keyframes fadeIn-25 {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* Detail Section */
 .detail-25 {
   width: 40%;
   padding: 20px;
   background: #f9f9f9;
   border-right: 1px solid #e0e0e0;
   position: relative;
-  animation: slideInLeft-25 0.8s ease-in-out;
-}
-
-@keyframes slideInLeft-25 {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.detail-header-25 {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
 }
 
 .detail-header-25 img {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  animation: scaleIn-25 0.8s ease-in-out;
-}
-
-@keyframes scaleIn-25 {
-  from {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
 }
 
 .detail-header-25 h2 {
   font-size: 1.5rem;
   color: #333;
-  font-weight: 500;
 }
 
 .detail-header-25 p {
@@ -118,12 +80,10 @@
   color: #00aaff;
   text-decoration: none;
   font-size: 0.9rem;
-  transition: color 0.3s ease;
 }
 
 .detail-desc-25 a:hover {
   text-decoration: underline;
-  color: #0088cc;
 }
 
 .qualification-25 ul {
@@ -135,7 +95,6 @@
   font-size: 1rem;
   color: #666;
   margin-bottom: 10px;
-  animation: fadeIn-25 0.8s ease-in-out;
 }
 
 .qualification-25 li span {
@@ -149,50 +108,40 @@
   margin-top: 20px;
 }
 
-.btn-apply-25, .btn-save-25 {
+.btn-apply-25 {
   padding: 10px 20px;
+  background: #00aaff;
+  color: #fff;
   border: none;
   border-radius: 25px;
   font-size: 1rem;
   cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.btn-apply-25 {
-  background: #00aaff;
-  color: #fff;
+  transition: 0.3s;
 }
 
 .btn-apply-25:hover {
   background: #0088cc;
-  transform: scale(1.05);
 }
 
 .btn-save-25 {
-  background: #f6f5f7;
+  padding: 10px 20px;
+  background: #ffce00;
   color: #333;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .btn-save-25:hover {
-  background: #e0e0e0;
-  transform: scale(1.05);
+  background: #ff9500;
 }
 
+/* Content Job Section */
 .content-job-25 {
   width: 60%;
   padding: 20px;
-  animation: slideInRight-25 0.8s ease-in-out;
-}
-
-@keyframes slideInRight-25 {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
 }
 
 .content-job-25 h1 {
@@ -216,11 +165,6 @@
   font-size: 1.2rem;
   color: #00aaff;
   margin-bottom: 10px;
-  transition: color 0.3s ease;
-}
-
-.new-contact-google-25:hover {
-  color: #0088cc;
 }
 
 .close-detail-25 {
@@ -230,13 +174,95 @@
   color: #666;
   font-size: 1.5rem;
   cursor: pointer;
-  transition: color 0.3s ease;
 }
 
 .close-detail-25:hover {
   color: #333;
 }
 
+/* Modal Popup Styles */
+.modal-popup-25 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.overlay-pop-up-25 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.modal-content-popup-25 {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 35%;
+}
+
+.modal-content-popup-25 form {
+  width: 100%;
+}
+
+.modal-content-popup-25 input[type="text"], 
+.modal-content-popup-25 input[type="email"],
+.modal-content-popup-25 input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.modal-content-popup-25 p {
+  padding: 15px;
+  font-size: 20px;
+  font-weight: 800;
+  display: flex;
+  width: 300px;
+}
+
+.modal-content-popup-25 label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.modal-content-popup-25 .btn-apply-25 {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  align-self: flex-end;
+}
+
+.modal-content-popup-25 .btn-apply-25:hover {
+  background-color: #44e24c;
+}
+
+.close-detail-25-2 {
+  display: none;
+}
+
+/* Responsive Styles */
 @media (max-width: 850px) {
   .new-container-25 {
     flex-direction: column;
@@ -249,6 +275,10 @@
   .detail-25 {
     border-right: none;
     border-bottom: 1px solid #e0e0e0;
+  }
+
+  .modal-content-popup-25 {
+    width: 50%;
   }
 }
 
@@ -267,5 +297,17 @@
 
   .content-job-25 p {
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 556px) {
+  .modal-content-popup-25 {
+    width: 70%;
+  }
+}
+
+@media (max-width: 390px) {
+  .modal-content-popup-25 {
+    width: 80%;
   }
 }

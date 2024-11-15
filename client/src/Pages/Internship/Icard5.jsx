@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
+import axios from 'axios';
 import './Icard1.css';
 import tcsimage from "../../Image/tcs.svg";
 
@@ -11,7 +12,13 @@ Modal.setAppElement('#root');
 const Icard5 = () => {
   const [savedJobs, setSavedJobs] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [applyModal, setApplyModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [file, setFile] = useState(null);
+  const [contact, setContact] = useState('');
+  const [optionalContact, setOptionalContact] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,12 +26,11 @@ const Icard5 = () => {
     setSavedJobs(jobs);
   }, []);
 
-  const handClick = () => {
+  const handleSaveClick = () => {
     const job = {
       id: Date.now(),
       company: 'TCS',
       image: tcsimage,
-
       role: 'Business Analysis',
       location: 'Delhi / NCR, Bangalore/Bengaluru, Hyderabad/Secunderabad, Chennai, Pune, Kolkata, Ahmedabad, Mumbai',
       contact: {
@@ -43,9 +49,34 @@ const Icard5 = () => {
     setModalIsOpen(true);
   };
 
-  const handleClick = () => {
-    alert('Internship Applied!!');
+  const upload = () => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    axios
+      .post('http://localhost:3000/upload', formData)
+      .then(() => {
+        console.log('File uploaded successfully');
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!name || !email || !file || !contact) {
+      alert('Please fill out all required fields.');
+      return;
+    }
+    upload();
+    alert('Internship Applied Successfully!');
     console.log('Internship Applied.');
+
+    setApplyModal(false);
+    navigate('/jobs');
+  };
+
+  const toggleApplyModal = () => {
+    setApplyModal(!applyModal);
   };
 
   const closeModal = () => {
@@ -69,7 +100,7 @@ const Icard5 = () => {
           <div className="detail-desc-25">
             <div className="about-25">
               <h4>About Company</h4>
-              <p>Tata Consultancy Services (TCS) is a leading global IT services, consulting, and business solutions organization headquartered in Mumbai, India. As a part of the Tata Group, TCS is renowned for its expertise in providing technology and consulting services across a wide range of industries...</p>
+              <p>Tata Consultancy Services (TCS) is a leading global IT services, consulting, and business solutions organization headquartered in Mumbai...</p>
             </div>
             <hr className="divider-25" />
             <div className="qualification-25">
@@ -79,25 +110,19 @@ const Icard5 = () => {
                 <li><span>PG:</span> MS/M.Sc(Science) in Any Specialization, MCA in Any Specialization</li>
                 <li><span>Doctorate:</span> Doctorate Not Required</li>
               </ul>
-              <br /><br />
             </div>
           </div>
           <hr className="divider-25" />
           <div className="detail-btn-25">
-            <NavLink to="/Intern">
-              <button className="btn-apply-25" onClick={handleClick}>Apply Now</button>
-            </NavLink>
-            <NavLink to="/Intern">
-              <button className="btn-save-25" onClick={handClick}>Save Now</button>
-            </NavLink>
+            <button className="btn-apply-25" onClick={toggleApplyModal}>Apply Now</button>
+            <button className="btn-save-25" onClick={handleSaveClick}>Save Now</button>
           </div>
         </div>
 
         <div className="content-job-25">
           <h1>Internship description</h1>
-          <p>At Tata Consultancy Services (TCS), the Business Intelligence Analyst role involves analyzing complex business data to provide strategic insights that drive business growth...</p><br />
-          <p><span>Location:</span> Delhi / NCR, Bangalore/Bengaluru, Hyderabad/Secunderabad, Chennai, Pune, Kolkata, Ahmedabad, Mumbai</p>
-          <br /><br />
+          <p>At Tata Consultancy Services (TCS), the Business Intelligence Analyst role involves analyzing complex business data...</p>
+          <br />
           <p className='new-contact-google-25'>Contact us:</p>
           <p><span>Mobile:</span> +91 8889888989</p>
           <p><span>Email:</span> tata@gmail.com</p>
@@ -115,8 +140,56 @@ const Icard5 = () => {
         <h2>{modalMessage}</h2>
         <button onClick={closeModal}>Close</button>
       </Modal>
+
+      {applyModal && (
+        <div className="modal-popup-25">
+          <div className="overlay-pop-up-25" onClick={toggleApplyModal}></div>
+          <div className="modal-content-popup-25">
+            <h2>Job Application</h2>
+            <button onClick={toggleApplyModal} className="close-detail-25" style={{ background: 'none', border: 'none' }}>
+              <FontAwesomeIcon icon={faTimes} />
+            </button>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <label>Resume</label>
+              <input
+                type="file"
+                onChange={(e) => setFile(e.target.files[0])}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Contact"
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Contact (optional)"
+                value={optionalContact}
+                onChange={(e) => setOptionalContact(e.target.value)}
+              />
+              <button type="submit" className="btn-apply-25">Apply Now</button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default Icard5;

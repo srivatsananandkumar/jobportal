@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
+import axios from 'axios';
 import './Icard1.css';
 import samsungimage from "../../Image/icons8-samsung.svg";
 
@@ -11,7 +12,13 @@ Modal.setAppElement('#root');
 const Icard3 = () => {
   const [savedJobs, setSavedJobs] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [applyModal, setApplyModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [file, setFile] = useState(null);
+  const [contact, setContact] = useState('');
+  const [optionalContact, setOptionalContact] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,12 +26,11 @@ const Icard3 = () => {
     setSavedJobs(jobs);
   }, []);
 
-  const handleSave = () => {
+  const handleSaveClick = () => {
     const job = {
-      id: Date.now(), // Unique ID for each job
+      id: Date.now(),
       company: 'Samsung',
       image: samsungimage,
-
       role: 'Product Data Analyst',
       location: 'Delhi / NCR, Bangalore/Bengaluru, Hyderabad/Secunderabad, Chennai, Pune, Kolkata, Ahmedabad, Mumbai',
       contact: {
@@ -33,7 +39,7 @@ const Icard3 = () => {
         lan: '083 083 083'
       },
       type: 'Internship'
-        };
+    };
 
     const updatedSavedJobs = [...savedJobs, job];
     setSavedJobs(updatedSavedJobs);
@@ -43,14 +49,39 @@ const Icard3 = () => {
     setModalIsOpen(true);
   };
 
-  const handleApply = () => {
-    alert('Internship Applied!!');
+  const upload = () => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    axios
+      .post('http://localhost:3000/upload', formData)
+      .then(() => {
+        console.log('File uploaded successfully');
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!name || !email || !file || !contact) {
+      alert('Please fill out all required fields.');
+      return;
+    }
+    upload();
+    alert('Internship Applied Successfully!');
     console.log('Internship Applied.');
+
+    setApplyModal(false);
+    navigate('/jobs');
+  };
+
+  const toggleApplyModal = () => {
+    setApplyModal(!applyModal);
   };
 
   const closeModal = () => {
     setModalIsOpen(false);
-    navigate('/sj'); // Navigate to SavedJobs page after closing the modal
+    navigate('/sj');
   };
 
   return (
@@ -84,18 +115,14 @@ const Icard3 = () => {
           </div>
           <hr className="divider-25" />
           <div className="detail-btn-25">
-            <NavLink to="/Intern">
-              <button className="btn-apply-25" onClick={handleApply}>Apply Now</button>
-            </NavLink>
-            <NavLink to="/Intern">
-              <button className="btn-save-25" onClick={handleSave}>Save Now</button>
-            </NavLink>
+            <button className="btn-apply-25" onClick={toggleApplyModal}>Apply Now</button>
+            <button className="btn-save-25" onClick={handleSaveClick}>Save Now</button>
           </div>
         </div>
 
         <div className="content-job-25">
           <h1>Internship description</h1>
-          <p>Good knowledge in Java, C, C++ is mandatory. Strong knowledge in OOPs concepts, J2EE, HTML, CSS, SQL. Logical and analytical thinking towards any programming language. Should have designed at least one project module using object-oriented analysis and design techniques. Sound knowledge of modern software architecture and development techniques. Should be a self-initiator and interested in learning new technologies. Good analytical and logical skills. Excelling problem-solving skills with an out-of-the-box approach.</p>
+          <p>Good knowledge in Java, C, C++ is mandatory. Strong knowledge in OOPs concepts, J2EE, HTML, CSS, SQL...</p>
           <br />
           <p><span>Location:</span> Delhi / NCR, Bangalore/Bengaluru, Hyderabad/Secunderabad, Chennai, Pune, Kolkata, Ahmedabad, Mumbai</p>
           <br /><br />
@@ -116,8 +143,56 @@ const Icard3 = () => {
         <h2>{modalMessage}</h2>
         <button onClick={closeModal}>Close</button>
       </Modal>
+
+      {applyModal && (
+        <div className="modal-popup-25">
+          <div className="overlay-pop-up-25" onClick={toggleApplyModal}></div>
+          <div className="modal-content-popup-25">
+            <h2>Job Application</h2>
+            <button onClick={toggleApplyModal} className="close-detail-25" style={{ background: 'none', border: 'none' }}>
+              <FontAwesomeIcon icon={faTimes} />
+            </button>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <label>Resume</label>
+              <input
+                type="file"
+                onChange={(e) => setFile(e.target.files[0])}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Contact"
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Contact (optional)"
+                value={optionalContact}
+                onChange={(e) => setOptionalContact(e.target.value)}
+              />
+              <button type="submit" className="btn-apply-25">Apply Now</button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default Icard3;

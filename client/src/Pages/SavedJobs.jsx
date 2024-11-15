@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import './SavedJobs.css'; // Add your own styles for this page
-import JobCard from './jc1.jsx'; // Import the JobCard component
+import './SavedJobs.css';
+import JobCard from './jc1.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faTrash, faSort, faHouse, faNewspaper, faChartLine, faBookmark, faEnvelope, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faTrash, faSort, faHouse, faNewspaper, faChartLine, faBookmark, faEnvelope, faCog, faSignOutAlt, faSuitcase } from '@fortawesome/free-solid-svg-icons';
 import Modal from 'react-modal';
 import { NavLink } from 'react-router-dom';
+import myimage from '../Image/avatar-jessica.jpeg';
 
 Modal.setAppElement('#root');
 
@@ -16,6 +17,7 @@ const SavedJobs = () => {
   const [selectedJobs, setSelectedJobs] = useState([]);
   const [selectedType, setSelectedType] = useState('all');
 
+  // Load saved jobs from local storage on component mount
   useEffect(() => {
     const jobs = JSON.parse(localStorage.getItem('savedJobs')) || [];
     setSavedJobs(jobs);
@@ -77,30 +79,41 @@ const SavedJobs = () => {
 
   const filteredJobs = sortJobs(filterJobs(savedJobs));
 
+  const handleJobClick = (id) => {
+    handleCheckboxChange(id);  // Toggle selection when clicking the job container
+  };
+
   return (
     <div className="saved-jobs-container-sj">
-      <div className="menus-sj">
-        <h1 className="logo-sj">JobHunt</h1>
-        <NavLink to="/"><FontAwesomeIcon icon={faHouse} className="fa-icon-sj" />Home</NavLink>
-        <NavLink to="/dashboard"><FontAwesomeIcon icon={faNewspaper} className="fa-icon-sj" />Dashboard</NavLink>
-        <NavLink to="#"><FontAwesomeIcon icon={faChartLine} className="fa-icon-sj" />Performance</NavLink>
-        <NavLink to="#"><FontAwesomeIcon icon={faBookmark} className="fa-icon-sj" />Saved Jobs</NavLink>
-        <NavLink to="#"><FontAwesomeIcon icon={faEnvelope} className="fa-icon-sj" />Message</NavLink>
-        <NavLink to="/setting"><FontAwesomeIcon icon={faCog} className="fa-icon-sj" />Setting</NavLink>
-        <a href="/signup" className="logout-jobs-sj"><FontAwesomeIcon icon={faSignOutAlt} className="fa-icon-sj"/><span className="text"> Logout</span></a>
+      <div className="sidebar-sj">
+        <NavLink to="/services">
+          <h1 className="logo-sj">Job<span>Hunt</span></h1>
+        </NavLink>
+        <div className="menus-sj">
+          <NavLink to="/home"><FontAwesomeIcon icon={faHouse} className="fa-icon-sj" />Home</NavLink>
+          <NavLink to="/dashboard"><FontAwesomeIcon icon={faNewspaper} className="fa-icon-sj" />Dashboard</NavLink>
+          <NavLink to="/intern"><FontAwesomeIcon icon={faChartLine} className="fa-icon-sj" />Internship</NavLink>
+          <NavLink to="/jobs"><FontAwesomeIcon icon={faSuitcase} className="fa-icon-sj" />Jobs</NavLink>
+          <NavLink to="/Resume"><FontAwesomeIcon icon={faNewspaper} className="fa-icon-sj" />Resume</NavLink>
+          <NavLink to="/" className="logout-sj"><FontAwesomeIcon icon={faSignOutAlt} className="fa-icon-sj" /><span className="text"> Logout</span></NavLink>
+        </div>
+
+        <NavLink to="/profile">
+          <div className="profile-sj">
+            <img className="profile-img-sj" src={myimage} alt="Profile" />
+            <div className="profile-name-sj">
+              <h4>Jessica Halle</h4>
+              <p>Data Science</p>
+            </div>
+          </div>
+        </NavLink>
       </div>
-      
-      <div className="content-sj">
-        <div className="header-sj">
-          <h1 className="saved-jobs-header-sj">Saved Jobs & Internships</h1>
+
+      <div className="main-sj">
+        <div className="main-header-sj">
+          <h1 className="saved-jobs-header-sj">SAVED OPPORTUNITIES</h1>
           <div className="search-sort-container-sj">
-            <input
-              type="text"
-              placeholder="Search by role..."
-              value={searchTerm}
-              onChange={handleSearch}
-              className="search-input-sj"
-            />
+            
             <select onChange={handleSort} className="sort-select-sj">
               <option value="date">Sort by Date</option>
               <option value="company">Sort by Company</option>
@@ -114,15 +127,15 @@ const SavedJobs = () => {
         <div className="filter-container-sj">
           <div className="filter-grid-sj">
             <button onClick={() => setSelectedType('all')} className={`filter-btn-sj ${selectedType === 'all' ? 'active' : ''}`}>All</button>
-            <button onClick={() => setSelectedType('job')} className={`filter-btn-sj ${selectedType === 'job' ? 'active' : ''}`}>Jobs</button>
+            <button onClick={() => setSelectedType('Full-Time')} className={`filter-btn-sj ${selectedType === 'job' ? 'active' : ''}`}>Jobs</button>
             <button onClick={() => setSelectedType('Internship')} className={`filter-btn-sj ${selectedType === 'Internship' ? 'active' : ''}`}>Internships</button>
           </div>
         </div>
 
         {filteredJobs.length > 0 ? (
-          <div className="cards-wrapper-sj">
+          <div className="wrapper-sj">
             {filteredJobs.map((job) => (
-              <div key={job.id} className="job-card-sj">
+              <div key={job.id} className="card-sj" onClick={() => handleJobClick(job.id)}>
                 <input
                   type="checkbox"
                   checked={selectedJobs.includes(job.id)}
@@ -134,7 +147,7 @@ const SavedJobs = () => {
             ))}
           </div>
         ) : (
-          <p className="no-jobs-msg-sj">Not saved </p>
+          <p className="no-jobs-msg-sj">No saved jobs found.</p>
         )}
 
         <Modal

@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope,faHouse,faBookmark,faNewspaper,faCog,faBars,faSearch,faMapMarkerAlt,faCalendarDay,faHourglassHalf,faUsers,faClock,faTimes,
-} from '@fortawesome/free-solid-svg-icons';
-// import myimage from '../Image/avatar-jessica.jpeg';
-// import googleimage from '../Image/icons8-google.svg';
-// import microsoftimage from '../Image/icons8-microsoft.svg';
-// import youtubeimage from '../Image/icons8-youtube.svg';
-// import appleimage from '../Image/icons8-apple.svg';
-// import amazonimage from '../Image/icons8-amazon.svg';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import './Jobcard1.css';
+import tcs from '../../Image/tcs.svg'; // Importing TCS logo
 import axios from 'axios';
 
 const Jobcard7 = () => {
   const [modal, setModal] = useState(false);
-  const navigate = useNavigate();
+  const [saved, setSaved] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -22,16 +18,40 @@ const Jobcard7 = () => {
   const [contact, setContact] = useState('');
   const [optionalContact, setOptionalContact] = useState('');
 
+  const navigate = useNavigate();
+
   const upload = () => {
     const formData = new FormData();
     formData.append('file', file);
 
     axios
       .post('http://localhost:3000/upload', formData)
-      .then((res) => {
-        console.log('File uploaded successfully');
-      })
-      .catch((er) => console.log(er));
+      .then(() => console.log('File uploaded successfully'))
+      .catch((error) => console.log(error));
+  };
+
+  const handleSaveClick = () => {
+    const job = {
+      id: Date.now(),
+      company: 'TCS',
+      image: tcs, // Using TCS logo
+      role: 'Software Engineer Role 7',
+      location: 'Delhi, Noida, Gurgaon',
+      contact: {
+        mobile: '+91 9876543210',
+        email: 'tcs@example.com',
+        lan: '011 111 222',
+      },
+      type: 'Full-Time',
+    };
+
+    const savedJobs = JSON.parse(localStorage.getItem('savedJobs')) || [];
+    savedJobs.push(job);
+    localStorage.setItem('savedJobs', JSON.stringify(savedJobs));
+
+    setSaved(true);
+    setModalMessage('Job Saved!');
+    setModalIsOpen(true);
   };
 
   const handleSubmit = (e) => {
@@ -42,105 +62,118 @@ const Jobcard7 = () => {
     }
     upload();
     alert('Job Applied Successfully!');
-    console.log('Job Applied.');
-
     setModal(false);
-
     navigate('/jobs');
   };
 
-  const toggleModal = () => {
+  const toggleApplyModal = () => {
     setModal(!modal);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    navigate('/sj');
   };
 
   return (
     <div>
-      <div className='new-container-43'>
-        <div className='detail-43'>
-          <button onClick={() => navigate('/jobs')} className='close-detail-43' style={{ background: 'none', border: 'none' }}>
+      <div className="new-container-43">
+        <div className="detail-43">
+          <button
+            onClick={() => navigate('/jobs')}
+            className="close-detail-43"
+            style={{ background: 'none', border: 'none' }}
+          >
             <FontAwesomeIcon icon={faTimes} />
           </button>
-          <div className='detail-header-43'>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgdN5uaq0RMWIAydcXeyqdkm4dtErZs3sw0w&s" alt='Google Logo'></img>
+          <div className="detail-header-43">
+            <img src={tcs} alt="TCS Logo" /> {/* Using imported TCS logo */}
             <h2>TCS</h2>
-            <p>Soft Engineer</p>
+            <p>Software Engineer Role 7</p>
           </div>
-          <hr className='divider-43' />
-          <div className='detail-desc-43'>
-            <div className='about-43'>
+          <hr className="divider-43" />
+          <div className="detail-desc-43">
+            <div className="about-43">
               <h4>About Company</h4>
-              <p>TCS is a global leader in IT services, consulting, and business solutions.TCS helps businesses around the world optimize their operations, enhance customer experiences. TCS offers a wide range of services, including software development, systems integration, and data analytics.</p>
-
-              {/* <a href="#">Read more</a> */}
+              <p>
+                TCS is a global leader in IT services, consulting, and business solutions. TCS helps businesses around the world optimize their operations and enhance customer experiences.
+              </p>
             </div>
-            <hr className='divider-43' />
-            <div className='qualification-43'>
+            <hr className="divider-43" />
+            <div className="qualification-43">
               <h4>Qualification</h4>
               <ul>
-                <li>
-                  <span>UG:</span> BCA in Any Specialization, B.Sc in Any Specialization, B.Tech/B.E. in Any Specialization
-                </li>
-                <li>
-                  <span>PG:</span> MS/M.Sc(Science) in Any Specialization, MCA in Any Specialization
-                </li>
-                <li>
-                  <span>Doctorate:</span> Doctorate Not Required
-                </li>
+                <li><span>UG:</span> BCA in Any Specialization, B.Sc in Any Specialization, B.Tech/B.E. in Any Specialization</li>
+                <li><span>PG:</span> MS/M.Sc(Science) in Any Specialization, MCA in Any Specialization</li>
+                <li><span>Doctorate:</span> Doctorate Not Required</li>
               </ul>
-              <br></br>
-              
             </div>
           </div>
-          <hr className='divider-43' />
-          <div className='detail-btn-43'>
-            <button className='btn-apply-43' onClick={toggleModal}>
+          <hr className="divider-43" />
+          <div className="detail-btn-43">
+            <button className="btn-apply-43" onClick={toggleApplyModal}>
               Apply Now
             </button>
-            <button className='btn-save-43'>Save job</button>
+            <button className="btn-save-43" onClick={handleSaveClick}>
+              {saved ? 'Job Saved' : 'Save Job'}
+            </button>
           </div>
         </div>
+
+        {modalIsOpen && (
+          <div className="modal">
+            <h2>{modalMessage}</h2>
+            <button onClick={closeModal}>Close</button>
+          </div>
+        )}
+
         {modal && (
-          <div className='modal-popup-43'>
-            <div className='overlay-pop-up-43' onClick={toggleModal}></div>
-            <div className='modal-content-popup-43'>
-              <p>JOB APPLICATION
-              <button onClick={toggleModal} className='close-detail-43-2' style={{ background: 'none', border: 'none' }}>
-            <FontAwesomeIcon icon={faTimes} /></button></p>
+          <div className="modal-popup-43">
+            <div className="overlay-pop-up-43" onClick={toggleApplyModal}></div>
+            <div className="modal-content-popup-43">
+              <h2>Job Application</h2>
+              <button
+                onClick={toggleApplyModal}
+                className="close-detail-43"
+                style={{ background: 'none', border: 'none' }}
+              >
+                <FontAwesomeIcon icon={faTimes} />
+              </button>
               <form onSubmit={handleSubmit}>
                 <input
-                  type='text'
-                  placeholder='Name'
+                  type="text"
+                  placeholder="Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
-                ></input>
+                />
                 <input
-                  type='email'
-                  placeholder='Email'
+                  type="email"
+                  placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                ></input>
+                />
                 <label>Resume</label>
                 <input
-                  type='file'
+                  type="file"
                   onChange={(e) => setFile(e.target.files[0])}
                   required
-                ></input>
+                />
                 <input
-                  type='text'
-                  placeholder='Contact'
+                  type="text"
+                  placeholder="Contact"
                   value={contact}
                   onChange={(e) => setContact(e.target.value)}
                   required
-                ></input>
+                />
                 <input
-                  type='text'
-                  placeholder='Contact (opt)'
+                  type="text"
+                  placeholder="Contact (optional)"
                   value={optionalContact}
                   onChange={(e) => setOptionalContact(e.target.value)}
-                ></input>
-                <button type='submit' className='btn-apply-43'>
+                />
+                <button type="submit" className="btn-apply-43">
                   Apply Now
                 </button>
               </form>
@@ -148,36 +181,16 @@ const Jobcard7 = () => {
           </div>
         )}
 
-        <div className='content-job-43'>
-          <h1> Job description</h1>
-
+        <div className="content-job-43">
+          <h1>Job Description</h1>
           <p>
-            Good knowledge in Java ,C,C++ is mandatory. Strong knowledge in OOPs concepts, J2EE, HTML, CSS, SQL. Logical and
-            analytical thinking towards any programming language. Should have designed at least one project module using object
-            oriented analysis and design techniques Sound knowledge of modern software architecture and
-            <br></br> development techniques. Should be a self initiator and interested in learning new technologies. Good
-            analytical and logical skills. Excelling problem solving skills with an out of the box approach.
+            TCS is looking for a skilled software engineer with expertise in programming languages like Java, C++, and Python. Applicants should have a solid understanding of software engineering principles and an interest in new technologies.
           </p>
-          <br></br>
-
-          <p>
-            <span>Location:</span> Delhi / NCR,Bangalore/Bengaluru,Hyderabad/
-            <br></br>Secunderabad,
-            <br></br>Chennai,Pune,Kolkata,Ahmedabad,Mumbai
-          </p>
-          <br></br>
-          <br></br>
-          <p className='new-contact-google-43'>Contact us</p>
-
-          <p>
-            <span>Mobile:</span> +91 8889888989
-          </p>
-          <p>
-            <span>Email:</span> google@gmail.com
-          </p>
-          <p>
-            <span>Lan:</span> 083 083 083
-          </p>
+          <p><span>Location:</span> Delhi, Noida, Gurgaon</p>
+          <p className="new-contact-google-43">Contact us:</p>
+          <p><span>Mobile:</span> +91 9876543210</p>
+          <p><span>Email:</span> tcs@example.com</p>
+          <p><span>Lan:</span> 011 111 222</p>
         </div>
       </div>
     </div>

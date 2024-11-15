@@ -68,7 +68,7 @@ const Internships = () => {
           <NavLink to="/home"><FontAwesomeIcon icon={faHouse} className="fa-icon-25" />Home</NavLink>
           <NavLink to="/dashboard"><FontAwesomeIcon icon={faNewspaper} className="fa-icon-25" />Dashboard</NavLink>
           <NavLink to="/jobs"><FontAwesomeIcon icon={faSuitcase} className="fa-icon-25" />Job</NavLink>
-          <NavLink to="/sj"><FontAwesomeIcon icon={faBookmark} className="fa-icon-25" />Saved Jobs</NavLink>
+          <NavLink to="/sj"><FontAwesomeIcon icon={faBookmark} className="fa-icon-25" />Saved Opportunities</NavLink>
           <NavLink to="#"><FontAwesomeIcon icon={faNewspaper} className="fa-icon-25" />Resume</NavLink>
           {/* <NavLink to="/setting"><FontAwesomeIcon icon={faCog} className="fa-icon-25" />Setting</NavLink> */}
           <NavLink to="/" className="logout-jobs-25"><FontAwesomeIcon icon={faSignOutAlt} className="fa-icon-25"/><span className="text"> Logout</span></NavLink>
