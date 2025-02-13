@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './Jobcard1.css';
 import intel from '../../Image/intel.svg';
 import axios from 'axios';
-//
+//jobcard8
 const Jobcard8 = () => {
   const [modal, setModal] = useState(false);
   const [saved, setSaved] = useState(false);
