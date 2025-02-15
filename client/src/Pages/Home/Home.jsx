@@ -20,8 +20,20 @@ function App() {
  const [messages, setMessages] = useState('');
  const [name, setName] = useState('');
  const [dropdownVisible, setDropdownVisible] = useState(false); 
+ const [image, setImage] = useState();
 
  axios.defaults.withCredentials = true;
+
+  
+ useEffect(() => {
+  axios.get('http://localhost:3000/getimage')
+  .then(res => {
+    setImage(res.data[res.data.length - 1].image); 
+    console.log("Fetched data" ,res.data[0].image);
+  })
+  .catch(err => console.log(err))
+ 
+}, [])
  useEffect(() => {
   const fetchData = async () => {
     try {
@@ -81,17 +93,23 @@ const handleLogout =  () => {
             <li><NavLink to="/jobs">Jobs</NavLink></li>
             <li><NavLink to="/intern">Internship</NavLink></li>
             <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-            <li><a href="#search-home-43">Browse</a></li>
+            <li><a href="/Resume">Resume</a></li>
           </ul>
         </nav>
         {auth ? (
           <div className="profile-container" ref={dropdownRef}>
-            <img
+            <img 
+              src={`http://localhost:3000/profileimages/${image}`} 
+              className="profile-image" 
+              alt="profile" 
+              onClick={toggleDropdown}
+            />
+            {/* <img
               src={myimage}
               alt="Profile"
               className="profile-image"
               onClick={toggleDropdown}
-            />
+            /> */}
             {dropdownVisible && (
               <div className="profile-dropdown-menu">
                 <NavLink to="/profile" className="profile-dropdown-item profile-link1">View Profile</NavLink>

@@ -5,8 +5,9 @@ import mongoose from 'mongoose';
 export const ProfileDataRoute = express.Router();
 
 ProfileDataRoute.post('/profileData', async (req, res) => {
+    console.log(req.body);
     try {
-        const newProfile = new profileData(req.body); // req.body contains the form data
+        const newProfile = new profileData(req.body); 
         await newProfile.save();
         res.status(201).json({ message: "Profile created successfully", profile: newProfile });
     } catch (error) {

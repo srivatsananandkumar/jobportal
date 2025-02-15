@@ -50,17 +50,17 @@ const ProfileView = () => {
       .then(res => {
         const profileData = res.data;
         setFormData({
-          firstName: profileData.firstName,
-          lastName: profileData.lastName,
-          email: profileData.email,
-          phone: profileData.phone,
-          address: profileData.address,
-          linkedin: profileData.linkedin,
-          github: profileData.github,
-          education: profileData.education,
-          experience: profileData.experience,
-          projects: profileData.projects,
-          skills: profileData.skills,
+          firstName: profileData.firstName || "",
+          lastName: profileData.lastName || "",
+          email: profileData.email || "",
+          phone: profileData.phone || "",
+          address: profileData.address || "",
+          linkedin: profileData.linkedin || "",
+          github: profileData.github || "",
+          education: profileData.education || [],
+          experience: profileData.experience || [],
+          projects: profileData.projects || [],
+          skills: profileData.skills || [],
         });
       })
       .catch(err => console.log(err));

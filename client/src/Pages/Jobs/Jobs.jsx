@@ -14,6 +14,20 @@ const Jobs = () => {
   const [jobType, setJobType] = useState("");
   const [noJobsFound, setNoJobsFound] = useState(false);
 
+  const [file, setFile] = useState();
+  const [image, setImage] = useState();
+
+ 
+  useEffect(() => {
+    axios.get('http://localhost:3000/getimage')
+    .then(res => {
+      setImage(res.data[res.data.length - 1].image); 
+      console.log("Fetched data" ,res.data[0].image);
+    })
+    .catch(err => console.log(err))
+   
+  }, [])
+
   useEffect(() => {
     
     const fetchData = async () => {
@@ -57,6 +71,13 @@ const Jobs = () => {
   const handleJobTypeChange = (event) => {
     setJobType(event.target.value);
   };
+
+  const handleLogout =  () => {
+    axios.get("http://localhost:3000/api/logout")
+    .then(res => {
+      location.reload(true);
+    }).catch(err => console.log(err));
+  }
   return (
     <div>
       <div className="body-43">
@@ -70,11 +91,24 @@ const Jobs = () => {
             <NavLink to="/sj"><FontAwesomeIcon icon={faBookmark} className="fa-icon-43" />Saved Opportunities</NavLink>
             <NavLink to="/Resume"><FontAwesomeIcon icon={faNewspaper} className="fa-icon-43" />Resume</NavLink>
             {/* <NavLink to="/setting"><FontAwesomeIcon icon={faCog} className="fa-icon-43" />Setting</NavLink> */}
-            <NavLink to="/" className="logout-jobs-43"><FontAwesomeIcon icon={faSignOutAlt} className="fa-icon-43"/><span className="text"> Logout</span></NavLink>
+            {/* <NavLink to="/home" className="logout-jobs-43"><FontAwesomeIcon icon={faSignOutAlt}  onClick={handleLogout}className="fa-icon-43"/><span className="text"> Logout</span></NavLink> */}
           </div>
 
+
+   
+            {/* <img 
+              src={`http://localhost:3000/profileimages/${image}`} 
+              className="profile-img-43" 
+              alt="profile" 
+            /> */}
+       
+
           <NavLink to="/profile"><div className="profile-43">
-            <img className="profile-img-43" src={myimage} alt="Profile" /> 
+          <img 
+              src={`http://localhost:3000/profileimages/${image}`} 
+              className="profile-img-43" 
+              alt="profile" 
+            />
             <div className="profile-name-43">
               <h4>Jessica Halle</h4>
               <p>Data Science</p>

@@ -19,6 +19,26 @@ const Internships = () => {
   const [jobType, setJobType] = useState("");
   const [noJobsFound, setNoJobsFound] = useState(false);
 
+  const [image, setImage] = useState();
+
+ 
+  useEffect(() => {
+    axios.get('http://localhost:3000/getimage')
+    .then(res => {
+      setImage(res.data[res.data.length - 1].image); 
+      console.log("Fetched data" ,res.data[0].image);
+    })
+    .catch(err => console.log(err))
+   
+  }, [])
+
+  const handleLogout =  () => {
+    axios.get("http://localhost:3000/api/logout")
+    .then(res => {
+      location.reload(true);
+    }).catch(err => console.log(err));
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -69,13 +89,17 @@ const Internships = () => {
           <NavLink to="/dashboard"><FontAwesomeIcon icon={faNewspaper} className="fa-icon-25" />Dashboard</NavLink>
           <NavLink to="/jobs"><FontAwesomeIcon icon={faSuitcase} className="fa-icon-25" />Job</NavLink>
           <NavLink to="/sj"><FontAwesomeIcon icon={faBookmark} className="fa-icon-25" />Saved Opportunities</NavLink>
-          <NavLink to="#"><FontAwesomeIcon icon={faNewspaper} className="fa-icon-25" />Resume</NavLink>
+          <NavLink to="/Resume"><FontAwesomeIcon icon={faNewspaper} className="fa-icon-25" />Resume</NavLink>
           {/* <NavLink to="/setting"><FontAwesomeIcon icon={faCog} className="fa-icon-25" />Setting</NavLink> */}
-          <NavLink to="/" className="logout-jobs-25"><FontAwesomeIcon icon={faSignOutAlt} className="fa-icon-25"/><span className="text"> Logout</span></NavLink>
+          {/* <NavLink to="/home" className="logout-jobs-25"><FontAwesomeIcon icon={faSignOutAlt} className="fa-icon-25"  onClick={handleLogout}/><span className="text"> Logout </span></NavLink> */}
         </div>
         <NavLink to="/profile">
           <div className="profile-25">
-            <img className="profile-img-25" src={myimage} alt="Profile" />
+          <img 
+              src={`http://localhost:3000/profileimages/${image}`} 
+              className="profile-img-25" 
+              alt="profile" 
+            />
             <div className="profile-name-25">
               <h4>Jessica Halle</h4>
               <p>Data Science</p>

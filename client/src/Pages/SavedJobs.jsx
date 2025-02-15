@@ -6,6 +6,7 @@ import { faSearch, faTrash, faSort, faHouse, faNewspaper, faChartLine, faBookmar
 import Modal from 'react-modal';
 import { NavLink } from 'react-router-dom';
 import myimage from '../Image/avatar-jessica.jpeg';
+import axios from 'axios';
 
 Modal.setAppElement('#root');
 
@@ -17,7 +18,17 @@ const SavedJobs = () => {
   const [selectedJobs, setSelectedJobs] = useState([]);
   const [selectedType, setSelectedType] = useState('all');
 
-  // Load saved jobs from local storage on component mount
+  const [image, setImage] = useState();
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/getimage')
+    .then(res => {
+      setImage(res.data[res.data.length - 1].image); 
+      console.log("Fetched data" ,res.data[0].image);
+    })
+    .catch(err => console.log(err))
+   
+  }, [])
   useEffect(() => {
     const jobs = JSON.parse(localStorage.getItem('savedJobs')) || [];
     setSavedJobs(jobs);
@@ -95,12 +106,16 @@ const SavedJobs = () => {
           <NavLink to="/intern"><FontAwesomeIcon icon={faChartLine} className="fa-icon-sj" />Internship</NavLink>
           <NavLink to="/jobs"><FontAwesomeIcon icon={faSuitcase} className="fa-icon-sj" />Jobs</NavLink>
           <NavLink to="/Resume"><FontAwesomeIcon icon={faNewspaper} className="fa-icon-sj" />Resume</NavLink>
-          <NavLink to="/" className="logout-sj"><FontAwesomeIcon icon={faSignOutAlt} className="fa-icon-sj" /><span className="text"> Logout</span></NavLink>
+          
         </div>
 
         <NavLink to="/profile">
           <div className="profile-sj">
-            <img className="profile-img-sj" src={myimage} alt="Profile" />
+          <img 
+              src={`http://localhost:3000/profileimages/${image}`} 
+              className="profile-img-43" 
+              alt="profile" 
+            />
             <div className="profile-name-sj">
               <h4>Jessica Halle</h4>
               <p>Data Science</p>

@@ -107,7 +107,7 @@ const Signup = () => {
 
         setSubmitted(true);
         alert("Account created successfully!");
-        navigate("/home");
+        navigate("/profileform");
       } catch (error) {
         console.error("Error creating account:", error);
         alert("Failed to create account.");
@@ -183,21 +183,7 @@ const Signup = () => {
                 </span>
               )}
             </div>
-            <div className="form-group">
-              <label htmlFor="acceptTerms" className="checkbox-container">
-                <input
-                  type="checkbox"
-                  name="acceptTerms"
-                  id="acceptTerms"
-                  checked={formData.acceptTerms}
-                  onChange={handleChange}
-                />
-                I accept the terms and conditions
-              </label>
-              {formErrors.acceptTerms && (
-                <span className="error-message">{formErrors.acceptTerms}</span>
-              )}
-            </div>
+            
             <div className="button-group1">
               <button type="submit" className="form-button">
                 Create Account

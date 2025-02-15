@@ -19,6 +19,19 @@ const Dashboard = () => {
     }
   };
 
+  const [image, setImage] = useState();
+
+ 
+  useEffect(() => {
+    axios.get('http://localhost:3000/getimage')
+    .then(res => {
+      setImage(res.data[res.data.length - 1].image); 
+      console.log("Fetched data" ,res.data[0].image);
+    })
+    .catch(err => console.log(err))
+   
+  }, [])
+
 
   const fetchLoginDates = async () => {
     try {
@@ -78,13 +91,13 @@ const Dashboard = () => {
               </NavLink>
           </li>
           <li>
-            <a href="#">
+            <a href="resume">
               <FontAwesomeIcon icon={faFileAlt} />
               <span className="text-side">Build Resume</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/sj">
               <FontAwesomeIcon icon={faBookmark} />
               <span className="text-side">Saved jobs</span>
             </a>
@@ -123,7 +136,11 @@ const Dashboard = () => {
             <span className="num">8</span>
           </a>
           <NavLink to="/profile" className="profile">
-            <img src={myimage} alt="Profile" />
+          <img 
+              src={`http://localhost:3000/profileimages/${image}`} 
+              className="profile-img-43" 
+              alt="profile" 
+            />
           </NavLink>
         </nav>
 
@@ -189,7 +206,11 @@ const Dashboard = () => {
                 <tbody>
                   <tr>
                     <td>
-                      <img src={myimage} alt="Applicant" />
+                    <img 
+              src={`http://localhost:3000/profileimages/${image}`} 
+              className="profile-img-43" 
+              alt="profile" 
+            />
                       <p>Jessica Halle</p>
                     </td>
                     <td>01-10-2021</td>
@@ -197,7 +218,11 @@ const Dashboard = () => {
                   </tr>
                   <tr>
                     <td>
-                      <img src={myimage} alt="Applicant" />
+                    <img 
+              src={`http://localhost:3000/profileimages/${image}`} 
+              className="profile-img-43" 
+              alt="profile" 
+            />
                       <p>Jessica Halle</p>
                     </td>
                     <td>01-10-2021</td>
@@ -205,7 +230,11 @@ const Dashboard = () => {
                   </tr>
                   <tr>
                     <td>
-                      <img src={myimage} alt="Applicant" />
+                    <img 
+              src={`http://localhost:3000/profileimages/${image}`} 
+              className="profile-img-43" 
+              alt="profile" 
+            />
                       <p>Jessica Halle</p>
                     </td>
                     <td>01-10-2021</td>
@@ -213,7 +242,11 @@ const Dashboard = () => {
                   </tr>
                   <tr>
                     <td>
-                      <img src={myimage} alt="Applicant" />
+                    <img 
+              src={`http://localhost:3000/profileimages/${image}`} 
+              className="profile-img-43" 
+              alt="profile" 
+            />
                       <p>Jessica Halle</p>
                     </td>
                     <td>01-10-2021</td>
