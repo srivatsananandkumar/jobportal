@@ -1,13 +1,14 @@
 import express from 'express';
 import {profileData} from '../models/profile.js';
 import mongoose from 'mongoose';
+import {verifyUser} from './userRoute.js'
 
 export const ProfileDataRoute = express.Router();
 
 ProfileDataRoute.post('/profileData', async (req, res) => {
     console.log(req.body);
     try {
-        const newProfile = new profileData(req.body); 
+        const newProfile = new profileData(req.body); // req.body contains the form data
         await newProfile.save();
         res.status(201).json({ message: "Profile created successfully", profile: newProfile });
     } catch (error) {
@@ -22,7 +23,7 @@ function isAuthenticated(req, res, next) {
     res.status(401).json({ message: "Unauthorized access. Please log in first." }); // User is not authenticated
   }
 
-ProfileDataRoute.get('/profileData', async (req, res) => {
+ProfileDataRoute.get('/profileData',verifyUser, async (req, res) => {
     try {
 
         const userId = req.user._id;
